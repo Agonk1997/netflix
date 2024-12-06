@@ -8,7 +8,9 @@
 }
 
 .hero {
-    background-image: linear-gradient(to bottom, #1A1D23, #1A1D23);
+    background-image: linear-gradient(
+            to right,
+            #8E0E00,#1F1C18),url("/static/assets/129554147-6ac7ba51-43e7-4c8e-ba77-e646a3ef6b12.jpg");
     background-size: cover;
     background-position: center;
     height: 100vh;
@@ -39,14 +41,13 @@
     transform: translate(-50%, -50%);
     font-size: 60px;
     font-weight: bold;
-    text-shadow: 0px 0px 10px #fff;
+
 }
 
 .hero .banner .slider span {
     position: relative;
     font-size: 24px;
     font-weight: bold;
-    text-shadow: 0px 0px 10px #fff;
     margin-top: 20px;
 }
 
@@ -67,7 +68,7 @@
     transform: translate(-50%, -50%);
     font-size: 24px;
     font-weight: bold;
-    text-shadow: 0px 0px 10px #fff;
+
 }
 
 .featured-content {
@@ -81,7 +82,7 @@
     font-size: 36px;
     font-weight: bold;
     color: #fff;
-    text-shadow: 0px 0px 10px #fff;
+
 }
 
 .new-releases {
@@ -95,7 +96,7 @@
     font-size: 36px;
     font-weight: bold;
     color: #fff;
-    text-shadow: 0px 0px 10px #fff;
+
 }
 
 .card {
@@ -115,13 +116,13 @@
 .card .card-body h3 {
     font-size: 24px;
     font-weight: bold;
-    text-shadow: 0px 0px 10px #fff;
+
 }
 
 .card .card-body p {
     font-size: 18px;
     font-weight: bold;
-    text-shadow: 0px 0px 10px #fff;}
+    }
 
 </style>
 
@@ -132,14 +133,10 @@
             <div class="row h-100 align-items-center justify-content-center">
                 <div class="col-md-12">
                     <div class="banner">
-                        <div class="loader">Loading...</div>
-                        <img src="https://picsum.photos/1600/1000" class="img1 active" alt="...">
-                        <img src="https://picsum.photos/1600/1001" class="img2" alt="...">
-                        <img src="https://picsum.photos/1600/1002" class="img3" alt="...">
-                        <div class="slider">
+                        <img src="/assets/05cItXL96l4LE9n02WfDR0h-5.webp" alt="Netflix Banner" class="img-fluid">
                             <h1 class="display-4 fw-bold">Welcome to Netflix</h1>
                             <span>Watch your favorite movies and TV shows online</span>
-                            <a th:href="@{/sign-up}" id="sign-up" class="btn btn-primary btn-lg" role="button">Sign Up Now</a>                        </div>
+                            <a th:href="@{/sign-up}" id="sign-up" class="btn btn-danger  btn-lg" role="button">Sign Up Now</a>                        </div>
                     </div>
                 </div>
             </div>
@@ -156,6 +153,9 @@
                         <div class="card-body">
                             <h3 class="card-title">The Dark Knight</h3>
                             <p class="card-text">Action Thriller Movie</p>
+                            <a href="https://www.youtube.com/watch?v=EXeTwQWrcwY" target="_blank" class="card-link">
+                                <p>Watch Trailer</p>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -165,6 +165,9 @@
                         <div class="card-body">
                             <h3 class="card-title">12 Years a Slave</h3>
                             <p class="card-text">Drama Movie</p>
+                            <a href="https://www.youtube.com/watch?v=Kj8QZGbB0XI" target="_blank" class="card-link">
+                                <p>Watch Trailer</p>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -174,6 +177,9 @@
                         <div class="card-body">
                             <h3 class="card-title">Interstellar</h3>
                             <p class="card-text">Science Fiction Movie</p>
+                            <a href="https://www.youtube.com/watch?v=zSWdZVtXT7E" target="_blank" class="card-link">
+                                <p>Watch Trailer</p>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -183,12 +189,16 @@
                         <div class="card-body">
                             <h3 class="card-title">The Proposal</h3>
                             <p class="card-text">Romance Comedy Movie</p>
+                            <a href="https://www.youtube.com/watch?v=FJjckpFgsdQ" target="_blank" class="card-link">
+                                <p>Watch Trailer</p>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
     <!-- New Releases Section -->
     <section class="new-releases py-5">
         <div class="container">
@@ -200,6 +210,9 @@
                         <div class="card-body">
                             <h3 class="card-title">The Night House</h3>
                             <p class="card-text">New Release Thriller Movie</p>
+                            <a href="https://www.youtube.com/watch?v=_L-w3TKFlr4" target="_blank" class="card-link">
+                                <p>Watch Trailer</p>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -209,6 +222,9 @@
                         <div class="card-body">
                             <h3 class="card-title">The Father</h3>
                             <p class="card-text">New Release Drama Movie</p>
+                            <a href="https://www.youtube.com/watch?v=6yMv5hT5ExI" target="_blank" class="card-link">
+                                <p>Watch Trailer</p>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -218,6 +234,9 @@
                         <div class="card-body">
                             <h3 class="card-title">Arrival</h3>
                             <p class="card-text">New Release Science Fiction Movie</p>
+                            <a href="https://www.youtube.com/watch?v=AMtPxxmOH0A" target="_blank" class="card-link">
+                                <p>Watch Trailer</p>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -227,6 +246,9 @@
                         <div class="card-body">
                             <h3 class="card-title">To All the Boys I've Loved Before</h3>
                             <p class="card-text">New Release Romance Comedy Movie</p>
+                            <a href="https://www.youtube.com/watch?v=GUf0d3KqO_M" target="_blank" class="card-link">
+                                <p>Watch Trailer</p>
+                            </a>
                         </div>
                     </div>
                 </div>

@@ -23,7 +23,7 @@ public class HomeController {
         this.userService = userService;
     }
 
-    @GetMapping("/")
+    @GetMapping("/index")
     public String index() {
         return "index";
     }
@@ -64,7 +64,10 @@ public class HomeController {
         }
         userService.addUser(user);
         redirectAttributes.addAttribute("error", "true");
-        return "redirect:/sign-up";
+
+        return "redirect:/login";
 
     }
+
+
 }

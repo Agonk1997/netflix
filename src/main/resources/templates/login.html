@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Netflix</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      /* Netflix-like background */
+      background-image: url('/assets/129554147-6ac7ba51-43e7-4c8e-ba77-e646a3ef6b12.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+    }
+
+    .container {
+      background-color: rgba(0, 0, 0, 0.85);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5);
+      width: 100%;
+      max-width: 400px;
+    }
+    .form-group label {
+      color: #b3b3b3;
+    }
+    .form-control {
+      background-color: #333;
+      color: #fff;
+      border: 1px solid #444;
+    }
+    .form-control:focus {
+      background-color: #444;
+      border-color: #e50914;
+      outline: none;
+      box-shadow: none;
+    }
+    .btn-primary {
+      background-color: #e50914;
+      border-color: #e50914;
+      font-weight: bold;
+    }
+    .btn-primary:hover {
+      background-color: #d90713;
+      border-color: #d90713;
+    }
+    .text-muted {
+      color: #b3b3b3;
+    }
+    .logo {
+      width: 120px;
+      vertical-align: top;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+    #logo {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      vertical-align: top;
+      width: 160px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<div class="container" id="logo">
+
+<a class="navbar-brand" href="/">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/1024px-Netflix_2015_logo.svg.png"
+       alt="Netflix Logo" class="logo">
+</a>
+</div>
+<div class="container">
+  <h2 class="text-center text-white mb-4">Sign In</h2>
+  <form id="login-form" method="post">
+    <div class="form-group">
+      <label for="email">Email Address</label>
+      <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+    <p class="text-muted text-center mt-3">New to Netflix? <a th:href="@{/sign-up}" id="sign-up" class="btn btn-primary btn-sm" role="button">Sign Up Now</a></p>
+  </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

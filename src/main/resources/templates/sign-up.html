@@ -7,15 +7,23 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <style>
     body {
-      background-image: url('https://www.netflix.com/static-assets/build/46e04bf6.png');
+      /* Netflix-like background */
+      background-image: url('/assets/129554147-6ac7ba51-43e7-4c8e-ba77-e646a3ef6b12.jpg');
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center center;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+
     }
     .container {
       background-color: rgba(0, 0, 0, 0.7);
       padding: 20px;
       border-radius: 10px;
+      margin-top: 5rem;
     }
     .form-group {
       margin-bottom: 20px;
@@ -35,9 +43,32 @@
       background-color: #d80710;
       border-color: #d80710;
     }
+    .logo {
+      width: 120px;
+      vertical-align: top;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+    }
+    #logo {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      vertical-align: top;
+      width: 160px;
+    }
   </style>
+
 </head>
+
 <body>
+<div class="container" id="logo">
+
+  <a class="navbar-brand" href="/">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/1024px-Netflix_2015_logo.svg.png"
+         alt="Netflix Logo" class="logo">
+  </a>
+</div>
 <div class="container">
   <div class="row">
     <div class="col-md-12">
@@ -77,7 +108,7 @@
         </div>
 
         <div class="form-group">
-          <button type="submit" class="btn btn-primary">Sign Up</button>
+          <button type="submit" class="btn btn-primary">Sign Up</button> <p class="text-muted text-center mt-3">Already have an account? <a th:href="@{/login}" id="sign-up" class="btn btn-primary btn-sm" role="button">Sign In Now</a></p>
         </div>
       </form>
     </div>

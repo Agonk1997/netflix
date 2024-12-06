@@ -1,0 +1,48 @@
+
+body {
+    /* Netflix-like background */
+    background-image: url('static/assets/129554147-6ac7ba51-43e7-4c8e-ba77-e646a3ef6b12.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+
+.container {
+    background-color: rgba(0, 0, 0, 0.85);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 400px;
+}
+.form-group label {
+    color: #b3b3b3;
+}
+.form-control {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #444;
+}
+.form-control:focus {
+    background-color: #444;
+    border-color: #e50914;
+    outline: none;
+    box-shadow: none;
+}
+.btn-primary {
+    background-color: #e50914;
+    border-color: #e50914;
+    font-weight: bold;
+}
+.btn-primary:hover {
+    background-color: #d90713;
+    border-color: #d90713;
+}
+.text-muted {
+    color: #b3b3b3;
+}
