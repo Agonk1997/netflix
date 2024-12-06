@@ -1,0 +1,267 @@
+<th:block th:insert="~{shared/_header.html}"></th:block>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #131313;
+    color: #fff;
+}
+
+.hero {
+    background-image: linear-gradient(to bottom, #1A1D23, #1A1D23);
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.hero .banner {
+    position: relative;
+    width: 100%;
+    height: 500px;
+}
+
+.hero .banner img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.hero .banner .slider {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 60px;
+    font-weight: bold;
+    text-shadow: 0px 0px 10px #fff;
+}
+
+.hero .banner .slider span {
+    position: relative;
+    font-size: 24px;
+    font-weight: bold;
+    text-shadow: 0px 0px 10px #fff;
+    margin-top: 20px;
+}
+
+.hero .banner .btn {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.hero .banner .loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    font-weight: bold;
+    text-shadow: 0px 0px 10px #fff;
+}
+
+.featured-content {
+    background-image: linear-gradient(to bottom, #131313, #1A1D23);
+    background-size: cover;
+    background-position: center;
+    padding: 50px 0;
+}
+
+.featured-content h2 {
+    font-size: 36px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0px 0px 10px #fff;
+}
+
+.new-releases {
+    background-image: linear-gradient(to bottom, #1A1D23, #131313);
+    background-size: cover;
+    background-position: center;
+    padding: 50px 0;
+}
+
+.new-releases h2 {
+    font-size: 36px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0px 0px 10px #fff;
+}
+
+.card {
+    background-color: #1A1D23;
+    border: none;
+}
+
+.card img {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.card .card-body {
+    padding: 0 20px;
+}
+
+.card .card-body h3 {
+    font-size: 24px;
+    font-weight: bold;
+    text-shadow: 0px 0px 10px #fff;
+}
+
+.card .card-body p {
+    font-size: 18px;
+    font-weight: bold;
+    text-shadow: 0px 0px 10px #fff;}
+
+</style>
+
+<main>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center justify-content-center">
+                <div class="col-md-12">
+                    <div class="banner">
+                        <div class="loader">Loading...</div>
+                        <img src="https://picsum.photos/1600/1000" class="img1 active" alt="...">
+                        <img src="https://picsum.photos/1600/1001" class="img2" alt="...">
+                        <img src="https://picsum.photos/1600/1002" class="img3" alt="...">
+                        <div class="slider">
+                            <h1 class="display-4 fw-bold">Welcome to Netflix</h1>
+                            <span>Watch your favorite movies and TV shows online</span>
+                            <a th:href="@{/sign-up}" id="sign-up" class="btn btn-primary btn-lg" role="button">Sign Up Now</a>                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Featured Content Section -->
+    <section class="featured-content py-5">
+        <div class="container">
+            <h2 class="text-center fw-bold mb-5">Popular on Netflix</h2>
+            <div class="row row-cols-1 row-cols-md-4 g-4">
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="https://picsum.photos/300/200" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h3 class="card-title">The Dark Knight</h3>
+                            <p class="card-text">Action Thriller Movie</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="https://picsum.photos/300/201" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h3 class="card-title">12 Years a Slave</h3>
+                            <p class="card-text">Drama Movie</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="https://picsum.photos/300/202" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h3 class="card-title">Interstellar</h3>
+                            <p class="card-text">Science Fiction Movie</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="https://picsum.photos/300/203" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h3 class="card-title">The Proposal</h3>
+                            <p class="card-text">Romance Comedy Movie</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- New Releases Section -->
+    <section class="new-releases py-5">
+        <div class="container">
+            <h2 class="text-center fw-bold mb-5">New Releases</h2>
+            <div class="row row-cols-1 row-cols-md-4 g-4">
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="https://picsum.photos/200/300" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h3 class="card-title">The Night House</h3>
+                            <p class="card-text">New Release Thriller Movie</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="https://picsum.photos/200/304" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h3 class="card-title">The Father</h3>
+                            <p class="card-text">New Release Drama Movie</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="https://picsum.photos/200/305" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h3 class="card-title">Arrival</h3>
+                            <p class="card-text">New Release Science Fiction Movie</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="https://picsum.photos/200/306" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h3 class="card-title">To All the Boys I've Loved Before</h3>
+                            <p class="card-text">New Release Romance Comedy Movie</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script>
+    const loader = document.querySelector('.loader');
+    const img1 = document.querySelector('.img1');
+    const img2 = document.querySelector('.img2');
+    const img3 = document.querySelector('.img3');
+    let currentImg = 1;
+
+    function load() {
+        loader.style.display = 'none';
+        setInterval(() => {
+            if (currentImg === 1) {
+                img1.classList.remove('active');
+                img2.classList.add('active');
+                currentImg = 2;
+            } else if (currentImg === 2) {
+                img2.classList.remove('active');
+                img3.classList.add('active');
+                currentImg = 3;
+            } else {
+                img3.classList.remove('active');
+                img1.classList.add('active');
+                currentImg = 1;
+            }
+        }, 5000);
+    }
+
+    window.addEventListener('load', load);
+</script>
+
+<th:block th:insert="~{shared/_footer.html}"></th:block>

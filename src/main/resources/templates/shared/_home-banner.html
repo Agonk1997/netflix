@@ -1,0 +1,94 @@
+<style>
+  #banner-movie {
+    transition: opacity 1s ease-in-out;
+  }
+
+  #banner-movie.fade {
+    opacity: 0;
+  }
+</style>
+</head>
+<body>
+<div class="container-fluid p-0">
+  <header class="bg-dark text-white py-3" id="banner">
+    <div class="container">
+      <h1 class="display-4">Welcome to Netflix</h1>
+      <p class="lead">Watch TV shows and movies online with Netflix.</p>
+      <div id="banner-movie">
+        <h2 id="banner-movie-title">The Matrix</h2>
+        <img id="banner-movie-image" class="img-fluid" alt="The Matrix" src="https://upload.wikimedia.org/wikipedia/en/c/c1/The_Matrix_Poster.jpg">
+        <p id="banner-movie-description">A hacker uncovers the disturbing truth about reality in this groundbreaking sci-fi film.</p>
+      </div>
+    </div>
+  </header>
+  <main class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h2>Popular on Netflix</h2>
+          <div class="row">
+            <div class="col-md-4">
+              <img src="https://upload.wikimedia.org/wikipedia/en/c/c1/The_Matrix_Poster.jpg" class="img-fluid" alt="The Matrix">
+              <h3>The Matrix</h3>
+              <p>A hacker uncovers the disturbing truth about reality in this groundbreaking sci-fi film.</p>
+            </div>
+            <div class="col-md-4">
+              <img src="https://upload.wikimedia.org/wikipedia/en/7/7f/Inception_ver3.jpg" class="img-fluid" alt="Inception">
+              <h3>Inception</h3>
+              <p>A thief who steals corporate secrets must navigate layers of dreams to complete his mission.</p>
+            </div>
+            <div class="col-md-4">
+              <img src="https://upload.wikimedia.org/wikipedia/en/b/bc/Interstellar_film_poster.jpg" class="img-fluid" alt="Interstellar">
+              <h3>Interstellar</h3>
+              <p>In the near future, a team of explorers travel through a wormhole in search of a new home for humanity.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+  const movies = [
+    {
+      title: "The Matrix",
+      description: "A hacker uncovers the disturbing truth about reality in this groundbreaking sci-fi film.",
+      imgSrc: "https://upload.wikimedia.org/wikipedia/en/c/c1/The_Matrix_Poster.jpg"
+    },
+    {
+      title: "Inception",
+      description: "A thief who steals corporate secrets must navigate layers of dreams to complete his mission.",
+      imgSrc: "https://upload.wikimedia.org/wikipedia/en/7/7f/Inception_ver3.jpg"
+    },
+    {
+      title: "Interstellar",
+      description: "In the near future, a team of explorers travel through a wormhole in search of a new home for humanity.",
+      imgSrc: "https://upload.wikimedia.org/wikipedia/en/b/bc/Interstellar_film_poster.jpg"
+    }
+  ];
+
+  let currentMovieIndex = 0;
+  const bannerTitle = document.getElementById('banner-movie-title');
+  const bannerImage = document.getElementById('banner-movie-image');
+  const bannerDescription = document.getElementById('banner-movie-description');
+  const bannerMovie = document.getElementById('banner-movie');
+
+  function changeMovie() {
+    bannerMovie.classList.add('fade');  // Start fade out
+
+    setTimeout(() => {
+      // Change movie content
+      currentMovieIndex = (currentMovieIndex + 1) % movies.length;
+      const movie = movies[currentMovieIndex];
+      bannerTitle.textContent = movie.title;
+      bannerDescription.textContent = movie.description;
+      bannerImage.src = movie.imgSrc;
+      bannerImage.alt = movie.title;
+
+      bannerMovie.classList.remove('fade');  // Start fade in
+    }, 1000);  // Sync with CSS transition
+  }
+
+  // Automatically change movie every 5 seconds
+  setInterval(changeMovie, 5000);
+</script>

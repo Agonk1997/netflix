@@ -1,0 +1,120 @@
+<style>
+    .bg-netflix {
+        background-color: #141414;
+    }
+
+    .logo {
+        width: 70px;
+        vertical-align: middle;
+    }
+
+    .navbar-dark .navbar-brand {
+        color: #ffffff;
+    }
+
+    .navbar-dark .navbar-nav .nav-link {
+        color: #ffffff;
+    }
+
+    .navbar-dark .navbar-nav .nav-link:hover {
+        color: #55CFFF;
+    }
+
+    .dropdown-menu {
+        background-color: #141414 !important; /* Ensure the background remains dark */
+        border: none !important; /* Remove border */
+        box-shadow: none !important; /* Remove shadow */
+    }
+
+    .dropdown-menu a {
+        color: #ffffff !important; /* Ensure the text color is white */
+    }
+
+    .dropdown-menu a:hover {
+        color: #55CFFF !important; /* Change hover color */
+        background-color: transparent !important; /* Remove background color on hover */
+    }
+
+    .icon {
+        width: 25px;
+        vertical-align: middle;
+        margin-right: 10px;
+    }
+
+    .ml-auto {
+        margin-left: auto;
+    }
+
+    .navbar-dark .navbar-toggler-icon {
+        background-image: url("/");
+    }
+
+    @media (max-width: 767px) {
+        .navbar {
+            padding: 0.5rem 1rem;
+        }
+
+        .navbar-nav {
+            margin-top: 1rem;
+        }
+
+        .navbar-nav .nav-link {
+            padding: 0.5rem 0.5rem;
+        }
+
+        .dropdown-menu {
+            width: 100%;
+        }
+    }
+</style>
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-netflix fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/1024px-Netflix_2015_logo.svg.png"
+                 alt="Netflix Logo" class="logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Browse
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/tv-shows">TV Shows</a>
+                        <a class="dropdown-item" href="/movies">Movies</a>
+                        <a class="dropdown-item" href="/recently-added">Recently Added</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Latest Releases</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Avatar_square.png/300px-Avatar_square.png"
+                             alt="User Icon" class="icon">
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Account</a>
+                        <a class="dropdown-item" href="#">Settings</a>
+                        <a class="dropdown-item" href="#">Help Center</a>
+                        <a class="dropdown-item" href="#">Log Out</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
