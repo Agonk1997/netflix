@@ -1,13 +1,16 @@
 <style>
+    /* General Background */
     .bg-netflix {
-        background-color: #141414;
+        background-color: #141414; /* Netflix dark background */
     }
 
+    /* Logo Styling */
     .logo {
         width: 70px;
         vertical-align: middle;
     }
 
+    /* Navbar Styling */
     .navbar-dark .navbar-brand {
         color: #ffffff;
     }
@@ -17,38 +20,53 @@
     }
 
     .navbar-dark .navbar-nav .nav-link:hover {
-        color: #55CFFF;
+        color: #55CFFF; /* Light blue hover effect */
     }
 
+    /* Dropdown Menu */
     .dropdown-menu {
-        background-color: #141414 !important; /* Ensure the background remains dark */
+        background-color: #141414 !important; /* Dark background for dropdown */
         border: none !important; /* Remove border */
         box-shadow: none !important; /* Remove shadow */
     }
 
     .dropdown-menu a {
-        color: #ffffff !important; /* Ensure the text color is white */
+        color: #ffffff !important; /* White text */
     }
 
     .dropdown-menu a:hover {
-        color: #55CFFF !important; /* Change hover color */
-        background-color: transparent !important; /* Remove background color on hover */
+        color: #55CFFF !important; /* Light blue hover text */
+        background-color: transparent !important; /* No background color on hover */
     }
 
+    /* Profile Icon */
     .icon {
+        display: block; /* Ensure no inline spacing issues */
         width: 25px;
         vertical-align: middle;
-        margin-right: 10px;
+        margin: 0; /* No extra margin */
     }
 
-    .ml-auto {
-        margin-left: auto;
+    /* Remove Default List Styles and Pseudo-elements */
+    .nav-item {
+        list-style: none; /* Remove list markers */
+        margin: 0;
+        padding: 0;
     }
 
+    .navbar-nav .dropdown::before,
+    .navbar-nav .dropdown::after,
+    .nav-item.dropdown::before,
+    .nav-item.dropdown::after {
+        content: none; /* Remove pseudo-elements */
+    }
+
+    /* Navbar Toggler Icon */
     .navbar-dark .navbar-toggler-icon {
-        background-image: url("/");
+        background-image: none; /* Remove default icon */
     }
 
+    /* Mobile View Adjustments */
     @media (max-width: 767px) {
         .navbar {
             padding: 0.5rem 1rem;
@@ -65,9 +83,9 @@
         .dropdown-menu {
             width: 100%;
         }
-
-
     }
+
+    /* Form and Buttons */
     .form-inline {
         margin-right: 20px;
     }
@@ -93,10 +111,29 @@
         color: #141414;
     }
 
+    /* Sign Up/Log In Button */
     #sign-up {
         margin-right: 50px;
     }
+
+    /* Footer Styling (if applicable) */
+    footer {
+        background-color: #141414;
+        color: #fff;
+        text-align: center;
+        padding: 1rem;
+    }
+
+    footer a {
+        color: #55CFFF;
+        text-decoration: none;
+    }
+
+    footer a:hover {
+        text-decoration: underline;
+    }
 </style>
+
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-netflix fixed-top">
     <div class="container">
