@@ -34,9 +34,10 @@ public class User {
     private String lastName;
 
 
-    @Column(nullable = false,length = 50)
+    @Column(nullable = false,length = 50,unique = true)
     @Email(message = "Invalid email format")
     @Pattern(regexp = "^(.+)@(.+)$", message = "Email format is invalid")
+
     private String email;
 
 

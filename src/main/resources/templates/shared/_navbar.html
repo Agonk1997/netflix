@@ -68,6 +68,30 @@
 
 
     }
+    .form-inline {
+        margin-right: 20px;
+    }
+
+    .form-control {
+        background-color: #141414;
+        border: 1px solid #333;
+        color: #fff;
+    }
+
+    .form-control:focus {
+        border-color: #55CFFF;
+        box-shadow: 0 0 0 0.2rem rgba(85, 207, 255, 0.25);
+    }
+
+    .btn-outline-light {
+        border-color: #55CFFF;
+        color: #55CFFF;
+    }
+
+    .btn-outline-light:hover {
+        background-color: #55CFFF;
+        color: #141414;
+    }
 
     #sign-up {
         margin-right: 50px;
@@ -104,27 +128,24 @@
                     <a class="nav-link" href="#">Latest Releases</a>
                 </li>
             </ul>
-
-
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+            </form>
             <a th:href="@{/login}" id="sign-up" class="btn btn-danger btn-sm" role="button">log in</a>
-
-
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                         alt="User Icon" class="icon">
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Account</a>
+                    <a class="dropdown-item" href="#">Settings</a>
+                    <a class="dropdown-item" href="#">Help Center</a>
+                    <a class="dropdown-item" href="#">Log Out</a>
+                </div>
+            </li>
         </div>
-        </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Avatar_square.png/300px-Avatar_square.png"
-                     alt="User Icon" class="icon">
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Account</a>
-                <a class="dropdown-item" href="#">Settings</a>
-                <a class="dropdown-item" href="#">Help Center</a>
-                <a class="dropdown-item" href="#">Log Out</a>
-            </div>
-        </li>
-        </ul>
-    </div>
     </div>
 </nav>
