@@ -18,11 +18,10 @@ public class MovieController {
     private MovieService movieService;
 
     // Show the form to add a new movie
-    @GetMapping("/movies")
-    public String viewMovies(Model model) {
-        List<Movie> movies = movieService.getAllMovies(); // Ensure this fetches all movies from the database
-        model.addAttribute("movies", movies);
-        return "movies"; // Corresponds to movies.html
+    @GetMapping("/add")
+    public String showAddMovieForm(Model model) {
+        model.addAttribute("movie", new Movie()); // Bind an empty movie object to the form
+        return "add-movie"; // Corresponds to add-movie.html
     }
 
 
