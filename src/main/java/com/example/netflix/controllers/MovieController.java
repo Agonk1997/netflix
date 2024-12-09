@@ -17,6 +17,13 @@ public class MovieController {
     @Autowired
     private MovieService movieService;
 
+
+    @GetMapping("")
+    public String getAllMovies(Model model) {
+        model.addAttribute("movies", movieService.getAllMovies());
+        return "movies"; // Ensure this matches your movies.html template path
+    }
+
     // Show the form to add a new movie
     @GetMapping("/add")
     public String showAddMovieForm(Model model) {

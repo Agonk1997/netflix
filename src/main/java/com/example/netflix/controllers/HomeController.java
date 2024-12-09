@@ -2,9 +2,11 @@ package com.example.netflix.controllers;
 
 
 import com.example.netflix.models.User;
+import com.example.netflix.services.MovieService;
 import com.example.netflix.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,14 +15,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+
 @Controller
 public class HomeController {
 
 
     private final UserService userService;
 
-    public HomeController(UserService userService) {
+
+    public HomeController(UserService userService, MovieService movieService) {
         this.userService = userService;
+
     }
 
     @GetMapping("/index")
@@ -28,10 +33,6 @@ public class HomeController {
         return "index";
     }
 
-    @GetMapping("/movies")
-    public String movies(){
-        return "movies";
-    }
 
     @GetMapping("/recently-added")
     public String recentlyAdded(){
