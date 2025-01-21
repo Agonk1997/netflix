@@ -3,46 +3,33 @@ package com.example.netflix.services;
 import com.example.netflix.models.User;
 import com.example.netflix.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
     @Autowired
     private final UserRepository userRepository;
 
-    public UserService(UserRepository userRepository) {
+    private final PasswordEncoder passwordEncoder;
+
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
-    }
-    public List<User> findAll() {
-        return userRepository.findAll();
+        this.passwordEncoder = passwordEncoder;
     }
 
-    public User findById(long id) {
-        return userRepository.findById(id).orElse(null);
+    public Optional<User> login(String email, String password) {
+        Optional<User> user = userRepository.findByEmail(email);
+        if (user.isPresent() && passwordEncoder.matches(password, user.get().getPassword())) {
+            return user;
+        }
+        return Optional.empty();
     }
-
-
 
     public User addUser(User user) {
-
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
-    public User modifyUser(User user) {
-        return userRepository.save(user);
-    }
-    public void deleteUser(long id) {
-        var existingUser = userRepository.findById(id);
-        if (existingUser==null) {
-            return;
-
-        }
-        userRepository.deleteById(id);
-    }
-
-
-
-
-
 }

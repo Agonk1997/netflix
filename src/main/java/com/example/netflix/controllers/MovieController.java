@@ -2,6 +2,8 @@ package com.example.netflix.controllers;
 
 import com.example.netflix.models.Movie;
 import com.example.netflix.services.MovieService;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,10 +21,23 @@ public class MovieController {
 
 
     @GetMapping("")
-    public String getAllMovies(Model model) {
-        model.addAttribute("movies", movieService.getAllMovies());
-        return "movies"; // Ensure this matches your movies.html template path
+    public String getAllMovies(Model model, HttpServletRequest request) {
+        // Get the cookie from the request
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("userId")) {
+                    String userId = cookie.getValue();
+                    // Use the user ID to fetch movies
+                    model.addAttribute("movies", movieService.getAllMovies());
+                    return "movies";
+                }
+            }
+        }
+        // If no cookie is found, redirect to login page
+        return "redirect:/login";
     }
+
 
     // Show the form to add a new movie
     @GetMapping("/add")
