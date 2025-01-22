@@ -35,11 +35,6 @@ public class HomeController {
         return "index";
     }
 
-    @GetMapping("/recently-added")
-    public String recentlyAdded() {
-        return "recently-added";
-    }
-
     @GetMapping("/tv-shows")
     public String tvShows() {
         return "tv-shows";
