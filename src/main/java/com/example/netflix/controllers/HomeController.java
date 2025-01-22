@@ -1,17 +1,16 @@
 package com.example.netflix.controllers;
 
-
 import com.example.netflix.models.Movie;
 import com.example.netflix.models.User;
 import com.example.netflix.services.MovieService;
 import com.example.netflix.services.UserService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -20,26 +19,21 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.Collections;
 import java.util.List;
 
-
 @Controller
 public class HomeController {
-
 
     private final UserService userService;
     private final MovieService movieService;
 
-
-    public HomeController(UserService userService, MovieService movieService, MovieService movieService1) {
+    public HomeController(UserService userService, MovieService movieService) {
         this.userService = userService;
-
-        this.movieService = movieService1;
+        this.movieService = movieService;
     }
 
     @GetMapping("/index")
     public String index() {
         return "index";
     }
-
 
     @GetMapping("/recently-added")
     public String recentlyAdded() {
@@ -58,7 +52,7 @@ public class HomeController {
             HttpServletRequest request,
             RedirectAttributes redirectAttributes
     ) {
-        Logger logger = LoggerFactory.getLogger(MovieController.class);
+        Logger logger = LoggerFactory.getLogger(HomeController.class);
 
         // Get the cookie from the request
         Cookie[] cookies = request.getCookies();
@@ -66,12 +60,6 @@ public class HomeController {
             for (Cookie cookie : cookies) {
                 if (cookie.getName().equals("userId")) {
                     String userId = cookie.getValue();
-
-                    // Optional: Validate the userId (e.g., check if it exists in the database)
-                    // if (!userService.isValidUserId(userId)) {
-                    //     redirectAttributes.addFlashAttribute("error", "Invalid user ID. Please log in again.");
-                    //     return "redirect:/login";
-                    // }
 
                     // Perform the search
                     List<Movie> movies;
@@ -100,7 +88,6 @@ public class HomeController {
     public String signUp(Model model) {
         model.addAttribute("user", new User());
         return "sign-up";
-
     }
 
     @PostMapping("/sign-up")
@@ -111,9 +98,7 @@ public class HomeController {
         }
         userService.addUser(user);
         redirectAttributes.addAttribute("error", "true");
-
         return "redirect:/login";
-
     }
 
 
