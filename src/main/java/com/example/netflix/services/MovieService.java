@@ -44,4 +44,9 @@ public class MovieService {
     public void deleteMovie(Long id) {
         movieRepository.deleteById(id);
     }
+
+    //search movies
+    public List<Movie> searchMovies(String query) {
+        return movieRepository.findByTitleContainingIgnoreCase(query);
+    }
 }

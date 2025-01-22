@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -18,7 +20,6 @@ public class MovieController {
 
     @Autowired
     private MovieService movieService;
-
 
     @GetMapping("")
     public String getAllMovies(Model model, HttpServletRequest request) {
@@ -29,7 +30,9 @@ public class MovieController {
                 if (cookie.getName().equals("userId")) {
                     String userId = cookie.getValue();
                     // Use the user ID to fetch movies
-                    model.addAttribute("movies", movieService.getAllMovies());
+                    List<Movie> movies = movieService.getAllMovies();
+                    System.out.println("Number of movies found: " + movies.size()); // Debugging
+                    model.addAttribute("movies", movies != null ? movies : new ArrayList<>());
                     return "movies";
                 }
             }
@@ -37,8 +40,6 @@ public class MovieController {
         // If no cookie is found, redirect to login page
         return "redirect:/login";
     }
-
-
     // Show the form to add a new movie
     @GetMapping("/add")
     public String showAddMovieForm(Model model) {
@@ -54,4 +55,6 @@ public class MovieController {
         model.addAttribute("successMessage", "Movie added successfully!");
         return "add-movie";
     }
+
+
 }

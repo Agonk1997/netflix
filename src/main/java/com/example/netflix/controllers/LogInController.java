@@ -41,9 +41,10 @@ public class LogInController {
                         BindingResult bindingResult,
                         HttpServletRequest request,
                         HttpServletResponse response,
-                        @RequestParam(value = "returnUrl", required = false) String returnUrl) {
+                        @RequestParam(value = "returnUrl", required = false) String returnUrl, Model model) {
 
         if (bindingResult.hasErrors()) {
+            model.addAttribute("error", "Incorrect email or password.");
             return "login";
         }
 
@@ -55,6 +56,7 @@ public class LogInController {
             logger.warn("Login failed for user with email: {}", loginRequestDto.getEmail());
             bindingResult.rejectValue("email", "error.loginRequestDto", "Incorrect email or password.");
             bindingResult.rejectValue("password", "error.loginRequestDto", "Incorrect email or password.");
+
             return "login";
         }
 
@@ -70,6 +72,7 @@ public class LogInController {
         if (returnUrl == null || returnUrl.isBlank()) {
             return "redirect:/";
         }
+
         return "redirect:" + returnUrl;
     }
 }
