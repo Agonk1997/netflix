@@ -17,7 +17,6 @@
       align-items: center;
       justify-content: center;
       margin: 0;
-
     }
     .container {
       background-color: rgba(0, 0, 0, 0.7);
@@ -58,21 +57,31 @@
       width: 160px;
     }
   </style>
-
 </head>
 
 <body>
 <div class="container" id="logo">
-
   <a class="navbar-brand" href="/">
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/1024px-Netflix_2015_logo.svg.png"
          alt="Netflix Logo" class="logo">
   </a>
 </div>
+
 <div class="container">
   <div class="row">
     <div class="col-md-12">
       <h1 style="color: #fff;">Sign Up for Netflix</h1>
+
+      <!-- Error Message -->
+      <div th:if="${errorMessage}" class="alert alert-danger">
+        <p th:text="${errorMessage}"></p>
+      </div>
+
+      <!-- Success Message -->
+      <div th:if="${successMessage}" class="alert alert-success">
+        <p th:text="${successMessage}"></p>
+      </div>
+
       <form id="sign-up-form" class="form-validate" method="post" th:object="${user}">
         <input type="hidden" th:field="*{id}"/>
         <div class="col-sm-10">
@@ -87,14 +96,14 @@
         </div>
         <div class="form-group">
           <label for="lastName">Last Name:</label>
-          <input type="text" class="form-control" th:field="*{lastName}" placeholder="Enter last name" required>>
+          <input type="text" class="form-control" th:field="*{lastName}" placeholder="Enter last name" required>
         </div>
         <div class="col-sm-10">
           <span class="text-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
         </div>
         <div class="form-group">
           <label for="email">Email:</label>
-          <input type="email" class="form-control" th:field="*{email}" placeholder="Enter your email" required>>
+          <input type="email" class="form-control" th:field="*{email}" placeholder="Enter your email" required>
         </div>
         <div class="col-sm-10">
           <span class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
@@ -108,13 +117,16 @@
         </div>
 
         <div class="form-group">
-          <button type="submit" class="btn btn-primary">Sign Up</button> <p class="text-muted text-center mt-3">Already have an account? <a th:href="@{/login}" id="sign-up" class="btn btn-primary btn-sm" role="button">Sign In Now</a></p>
+          <button type="submit" class="btn btn-primary">Sign Up</button>
+          <p class="text-muted text-center mt-3">
+            Already have an account?
+            <a th:href="@{/login}" id="sign-up" class="btn btn-primary btn-sm" role="button">Sign In Now</a>
+          </p>
         </div>
       </form>
     </div>
   </div>
 </div>
-
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

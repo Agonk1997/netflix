@@ -91,15 +91,29 @@ public class HomeController {
     }
 
     @PostMapping("/sign-up")
-    public String newUser(@Valid @ModelAttribute User user, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+    public String newUser(
+            @Valid @ModelAttribute User user,
+            BindingResult bindingResult,
+            RedirectAttributes redirectAttributes,
+            Model model) {
+
+        // Check for validation errors
         if (bindingResult.hasErrors()) {
-            bindingResult.getAllErrors().forEach(System.out::println);
             return "/sign-up";
         }
+
+        // Check if the email already exists
+        if (userService.emailExists(user.getEmail())) {
+            model.addAttribute("errorMessage", "This email is already registered. Please use a different email.");
+            return "/sign-up";
+        }
+
+        // Save the user if no errors
         userService.addUser(user);
-        redirectAttributes.addAttribute("error", "true");
+        redirectAttributes.addFlashAttribute("successMessage", "Account created successfully! Please log in.");
         return "redirect:/login";
     }
+
 
 
 }
