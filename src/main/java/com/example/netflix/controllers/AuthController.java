@@ -1,6 +1,5 @@
 package com.example.netflix.controllers;
 
-import com.example.netflix.dtos.LoginRequestDto;
 import com.example.netflix.models.User;
 import com.example.netflix.repositories.UserRepository;
 import com.example.netflix.services.UserService;
@@ -8,7 +7,6 @@ import com.example.netflix.services.UserServiceLogin;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,15 +18,15 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-public class LogInController {
+public class AuthController {
 
-    private static final Logger logger = LoggerFactory.getLogger(LogInController.class);
+    private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
 
     private final UserRepository userRepository;
     private final UserServiceLogin userServiceLogin;
     private final UserService userService;
 
-    public LogInController(UserRepository userRepository, @Qualifier("userService") UserServiceLogin userServiceLogin, UserService userService) {
+    public AuthController(UserRepository userRepository, @Qualifier("userService") UserServiceLogin userServiceLogin, UserService userService) {
         this.userRepository = userRepository;
         this.userServiceLogin = userServiceLogin;
         this.userService = userService;
@@ -88,6 +86,35 @@ public class LogInController {
             }
         }
         redirectAttributes.addFlashAttribute("message", "You have been logged out successfully.");
+        return "redirect:/login";
+    }
+    @GetMapping("/sign-up")
+    public String signUp(Model model) {
+        model.addAttribute("user", new User());
+        return "sign-up";
+    }
+
+    @PostMapping("/sign-up")
+    public String newUser(
+            @Valid @ModelAttribute User user,
+            BindingResult bindingResult,
+            RedirectAttributes redirectAttributes,
+            Model model) {
+
+        // Check for validation errors
+        if (bindingResult.hasErrors()) {
+            return "/sign-up";
+        }
+
+        // Check if the email already exists
+        if (userService.emailExists(user.getEmail())) {
+            model.addAttribute("errorMessage", "This email is already registered. Please use a different email.");
+            return "/sign-up";
+        }
+
+        // Save the user if no errors
+        userService.addUser(user);
+        redirectAttributes.addFlashAttribute("successMessage", "Account created successfully! Please log in.");
         return "redirect:/login";
     }
 }

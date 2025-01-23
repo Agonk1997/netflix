@@ -84,35 +84,7 @@ public class HomeController {
         return "redirect:/login";
     }
 
-    @GetMapping("/sign-up")
-    public String signUp(Model model) {
-        model.addAttribute("user", new User());
-        return "sign-up";
-    }
 
-    @PostMapping("/sign-up")
-    public String newUser(
-            @Valid @ModelAttribute User user,
-            BindingResult bindingResult,
-            RedirectAttributes redirectAttributes,
-            Model model) {
-
-        // Check for validation errors
-        if (bindingResult.hasErrors()) {
-            return "/sign-up";
-        }
-
-        // Check if the email already exists
-        if (userService.emailExists(user.getEmail())) {
-            model.addAttribute("errorMessage", "This email is already registered. Please use a different email.");
-            return "/sign-up";
-        }
-
-        // Save the user if no errors
-        userService.addUser(user);
-        redirectAttributes.addFlashAttribute("successMessage", "Account created successfully! Please log in.");
-        return "redirect:/login";
-    }
 
 
 

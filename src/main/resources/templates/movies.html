@@ -99,19 +99,20 @@
 <div class="container">
     <h1 class="mb-4">Movies</h1>
 
+    <!-- Check if movies list is not empty -->
     <div class="row row-cols-1 row-cols-md-3 g-4">
         <div class="col" th:each="movie : ${movies}">
-            <div class="card h-100">
-                <img th:src="${movie.imgSrc}" class="card-img-top" alt="Movie Image">
-                <div class="card-body">
-                    <h5 class="card-title" th:text="${movie.title}"></h5>
-                    <p class="card-text" th:text="${movie.description}"></p>
+            <a th:href="@{/movies/{id}(id=${movie.id})}" class="text-decoration-none">
+                <div class="card h-100">
+                    <!-- Use a default image if imgSrc is null -->
+                    <img th:src="${movie.imgSrc != null ? movie.imgSrc : '/images/default-movie.jpg'}" class="card-img-top" alt="Movie Image">
+                    <div class="card-body">
+                        <!-- Ensure title and description render properly -->
+                        <h5 class="card-title" th:text="${movie.title != null ? movie.title : 'Untitled Movie'}"></h5>
+                        <p class="card-text" th:text="${movie.description != null ? movie.description : 'No description available.'}"></p>
+                    </div>
                 </div>
-                <div class="card-footer text-center">
-                    <a th:href="${movie.trailerUrl}" target="_blank" class="btn btn-primary">Watch Trailer</a>
-                    <a th:href="${movie.movieUrl}" target="_blank" class="btn btn-secondary">Watch Movie</a>
-                </div>
-            </div>
+            </a>
         </div>
     </div>
 </div>

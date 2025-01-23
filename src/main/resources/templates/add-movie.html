@@ -62,26 +62,26 @@
 <body>
 <div class="container">
     <h1>Add a New Movie</h1>
-    <form th:action="@{/movies/add}" th:object="${movie}" method="post">
+    <form th:action="@{/movies/add}" method="post" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>
-            <input type="text" id="title" class="form-control" th:field="*{title}" required>
+            <input type="text" id="title" class="form-control" name="title" th:value="${movie?.title}" required>
         </div>
         <div class="mb-3">
             <label for="description" class="form-label">Description</label>
-            <textarea id="description" class="form-control" th:field="*{description}" rows="3" required></textarea>
+            <textarea id="description" class="form-control" name="description" rows="3" th:text="${movie?.description}" required></textarea>
         </div>
         <div class="mb-3">
             <label for="imgSrc" class="form-label">Image URL</label>
-            <input type="text" id="imgSrc" class="form-control" th:field="*{imgSrc}" required>
+            <input type="text" id="imgSrc" class="form-control" name="imgSrc" th:value="${movie?.imgSrc}" required>
         </div>
         <div class="mb-3">
             <label for="trailerUrl" class="form-label">Trailer URL</label>
-            <input type="text" id="trailerUrl" class="form-control" th:field="*{trailerUrl}" required>
+            <input type="text" id="trailerUrl" class="form-control" name="trailerUrl" th:value="${movie?.trailerUrl}" required>
         </div>
         <div class="mb-3">
-            <label for="movieUrl" class="form-label">Movie URL</label>
-            <input type="text" id="movieUrl" class="form-control" th:field="*{movieUrl}" required>
+            <label for="movieFile" class="form-label">Movie File</label>
+            <input type="file" id="movieFile" class="form-control" name="movieFile" accept="video/*" required>
         </div>
         <button type="submit" class="btn btn-primary">Add Movie</button>
     </form>
