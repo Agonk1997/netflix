@@ -92,9 +92,171 @@
         .btn-secondary:hover {
             background-color: #292929;
         }
+        /* General Background */
+        .bg-netflix {
+            background-color: #141414;
+        }
+
+        /* Logo Styling */
+        .logo {
+            width: 70px;
+            vertical-align: middle;
+        }
+
+        /* Navbar Styling */
+        .navbar-dark .navbar-brand {
+            color: #ffffff;
+        }
+
+        .navbar-dark .navbar-nav .nav-link {
+            color: #ffffff;
+        }
+
+        .navbar-dark .navbar-nav .nav-link:hover {
+            color: #55CFFF;
+        }
+
+        /* Dropdown Menu */
+        .dropdown-menu {
+            background-color: #141414 !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .dropdown-menu a {
+            color: #ffffff !important;
+        }
+
+        .dropdown-menu a:hover {
+            color: #55CFFF !important;
+            background-color: transparent !important;
+        }
+
+        /* Profile Icon */
+        .icon {
+            display: block;
+            width: 25px;
+            vertical-align: middle;
+            margin: 0;
+        }
+
+        /* Remove Default List Styles */
+        .nav-item {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navbar Toggler Icon */
+        .navbar-dark .navbar-toggler-icon {
+            background-image: none;
+        }
+
+        /* Mobile View Adjustments */
+        @media (max-width: 767px) {
+            .navbar {
+                padding: 0.5rem 1rem;
+            }
+
+            .navbar-nav {
+                margin-top: 1rem;
+            }
+
+            .navbar-nav .nav-link {
+                padding: 0.5rem 0.5rem;
+            }
+
+            .dropdown-menu {
+                width: 100%;
+            }
+        }
+
+        /* Search Form */
+        .form-inline {
+            margin-left: 100px;
+            margin-right: 100px;
+        }
+
+        .form-control {
+            background-color: #141414;
+            border: 1px solid #333;
+            color: #fff;
+        }
+
+        .form-control:focus {
+            border-color: #55CFFF;
+            box-shadow: 0 0 0 0.2rem rgba(85, 207, 255, 0.25);
+        }
+
+        .btn-outline-light {
+            border-color: #55CFFF;
+            color: #55CFFF;
+        }
+
+        .btn-outline-light:hover {
+            background-color: #55CFFF;
+            color: #141414;
+        }
+
+        /* Sign Up/Log In Button */
+        #sign-up {
+            margin-right: 50px;
+        }
+
     </style>
 </head>
 <body>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-netflix fixed-top">
+    <div class="container">
+        <!-- Brand/Logo -->
+        <a class="navbar-brand" href="/">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/1024px-Netflix_2015_logo.svg.png"
+                 alt="Netflix Logo" class="logo">
+        </a>
+
+        <!-- Toggler for Mobile View -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar Links and Content -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <!-- Home Link -->
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <!-- Movies Link -->
+                <li class="nav-item active">
+                    <a class="nav-link" href="/tv-shows">Tv Shows</a>
+                </li>
+            </ul>
+
+            <!-- Search Bar -->
+            <form class="form-inline my-2 my-lg-0" th:action="@{/search}" method="get">
+                <input class="form-control mr-sm-2" type="search" name="query" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+            </form>
+
+            <!-- Log In Button -->
+            <a th:href="@{/login}" id="sign-up" class="btn btn-danger btn-sm" role="button">log in</a>
+
+            <!-- Profile Dropdown -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                         alt="User Icon" class="icon">
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/logout">Log Out</a>
+                </div>
+            </li>
+        </div>
+    </div>
+</nav>
 
 <div class="container">
     <h1 class="mb-4">Movies</h1>

@@ -1,40 +1,293 @@
-<th:block th:insert="~{shared/_header.html}"></th:block>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix TV Shows</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* General Background */
+        .bg-netflix {
+            background-color: #141414;
+        }
 
+        /* Logo Styling */
+        .logo {
+            width: 70px;
+            vertical-align: middle;
+        }
+
+        /* Navbar Styling */
+        .navbar-dark .navbar-brand {
+            color: #ffffff;
+        }
+
+        .navbar-dark .navbar-nav .nav-link {
+            color: #ffffff;
+        }
+
+        .navbar-dark .navbar-nav .nav-link:hover {
+            color: #55CFFF;
+        }
+
+        /* Dropdown Menu */
+        .dropdown-menu {
+            background-color: #141414 !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .dropdown-menu a {
+            color: #ffffff !important;
+        }
+
+        .dropdown-menu a:hover {
+            color: #55CFFF !important;
+            background-color: transparent !important;
+        }
+
+        /* Profile Icon */
+        .icon {
+            display: block;
+            width: 25px;
+            vertical-align: middle;
+            margin: 0;
+        }
+
+        /* Remove Default List Styles and Pseudo-elements */
+        .nav-item {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar-nav .dropdown::before,
+        .navbar-nav .dropdown::after,
+        .nav-item.dropdown::before,
+        .nav-item.dropdown::after {
+            content: none;
+        }
+
+        /* Navbar Toggler Icon */
+        .navbar-dark .navbar-toggler-icon {
+            background-image: none;
+        }
+
+        /* Mobile View Adjustments */
+        @media (max-width: 767px) {
+            .navbar {
+                padding: 0.5rem 1rem;
+            }
+
+            .navbar-nav {
+                margin-top: 1rem;
+            }
+
+            .navbar-nav .nav-link {
+                padding: 0.5rem 0.5rem;
+            }
+
+            .dropdown-menu {
+                width: 100%;
+            }
+        }
+
+        /* Form and Buttons */
+        .form-inline {
+            margin-right: 20px;
+        }
+
+        .form-control {
+            background-color: #141414;
+            border: 1px solid #333;
+            color: #fff;
+        }
+
+        .form-control:focus {
+            border-color: #55CFFF;
+            box-shadow: 0 0 0 0.2rem rgba(85, 207, 255, 0.25);
+        }
+
+        .btn-outline-light {
+            border-color: #55CFFF;
+            color: #55CFFF;
+        }
+
+        .btn-outline-light:hover {
+            background-color: #55CFFF;
+            color: #141414;
+        }
+
+        /* Sign Up/Log In Button */
+        #sign-up {
+            margin-right: 50px;
+        }
+
+        /* Footer Styling (if applicable) */
+        footer {
+            background-color: #141414;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        footer a {
+            color: #55CFFF;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        body {
+            background-color: #141414;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+
+        h2 {
+            color: #fff;
+        }
+
+        .tv-shows, .new-release-tv-shows {
+            padding-top: 50px;
+        }
+
+        .card {
+            background-color: #333;
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 100%;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card-img-top {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 15px;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .card-text {
+            font-size: 14px;
+            color: #999;
+        }
+
+        .container {
+            padding-top: 50px;
+        }
+
+        .back-button img {
+            width: 80px;
+            height: auto;
+            display: inline-block;
+        }
+
+        .back-button {
+            margin: 100px;
+            text-decoration: none;
+        }
+
+        .back-button:hover img {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-netflix fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/1024px-Netflix_2015_logo.svg.png"
+                 alt="Netflix Logo" class="logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/movies">Movies</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0" th:action="@{/search}" method="get">
+                <input class="form-control mr-sm-2" type="search" name="query" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+            </form>
+            <a th:href="@{/login}" id="sign-up" class="btn btn-danger btn-sm" role="button">log in</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                         alt="User Icon" class="icon">
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/logout">Log Out</a>
+                </div>
+            </li>
+        </div>
+    </div>
+</nav>
+
+<!-- Main Content -->
 <main>
     <section class="tv-shows py-5">
         <div class="container">
-            <h2 class="text-center fw-bold mb-5">Popular TV Shows</h2>
             <div class="row row-cols-1 row-cols-md-4 g-4">
+                <!-- Stranger Things -->
                 <div class="col">
                     <div class="card h-100">
-                        <img src="https://picsum.photos/300/200" class="card-img-top" alt="...">
+                        <img src="https://m.media-amazon.com/images/M/MV5BMjE2N2MyMzEtNmU5NS00OTI0LTlkNTMtMWM1YWYyNmU4NmY0XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" class="card-img-top" alt="Stranger Things">
                         <div class="card-body">
                             <h3 class="card-title">Stranger Things</h3>
                             <p class="card-text">Science Fiction TV Series</p>
                         </div>
                     </div>
                 </div>
+                <!-- The Office -->
                 <div class="col">
                     <div class="card h-100">
-                        <img src="https://picsum.photos/300/201" class="card-img-top" alt="...">
+                        <img src="https://m.media-amazon.com/images/I/81vj15-NuoL._AC_UF894,1000_QL80_.jpg" class="card-img-top" alt="The Office">
                         <div class="card-body">
                             <h3 class="card-title">The Office</h3>
                             <p class="card-text">Comedy TV Series</p>
                         </div>
                     </div>
                 </div>
+                <!-- Breaking Bad -->
                 <div class="col">
                     <div class="card h-100">
-                        <img src="https://picsum.photos/300/202" class="card-img-top" alt="...">
+                        <img src="https://m.media-amazon.com/images/M/MV5BMzU5ZGYzNmQtMTdhYy00OGRiLTg0NmQtYjVjNzliZTg1ZGE4XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" class="card-img-top" alt="Breaking Bad">
                         <div class="card-body">
                             <h3 class="card-title">Breaking Bad</h3>
                             <p class="card-text">Crime TV Series</p>
                         </div>
                     </div>
                 </div>
+                <!-- The Walking Dead -->
                 <div class="col">
                     <div class="card h-100">
-                        <img src="https://picsum.photos/300/203" class="card-img-top" alt="...">
+                        <img src="https://m.media-amazon.com/images/M/MV5BYWQwMGRhNGEtZTNhMy00MzVjLWJhMjItYjcwMDljMTkyNTg2XkEyXkFqcGc@._V1_.jpg" class="card-img-top" alt="The Walking Dead">
                         <div class="card-body">
                             <h3 class="card-title">The Walking Dead</h3>
                             <p class="card-text">Horror TV Series</p>
@@ -44,40 +297,45 @@
             </div>
         </div>
     </section>
+
     <section class="new-release-tv-shows py-5">
         <div class="container">
             <h2 class="text-center fw-bold mb-5">New Release TV Shows</h2>
             <div class="row row-cols-1 row-cols-md-4 g-4">
+                <!-- The Witcher -->
                 <div class="col">
                     <div class="card h-100">
-                        <img src="https://picsum.photos/200/300" class="card-img-top" alt="...">
+                        <img src="https://m.media-amazon.com/images/M/MV5BMTQ5MDU5MTktMDZkMy00NDU1LWIxM2UtODg5OGFiNmRhNDBjXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" class="card-img-top" alt="The Witcher">
                         <div class="card-body">
                             <h3 class="card-title">The Witcher</h3>
                             <p class="card-text">New Release Fantasy TV Series</p>
                         </div>
                     </div>
                 </div>
+                <!-- Westworld -->
                 <div class="col">
                     <div class="card h-100">
-                        <img src="https://picsum.photos/200/304" class="card-img-top" alt="...">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRZ8MIAz8oM3Z7ptO9uKdIRSRyviZKTRFqdw&s" class="card-img-top" alt="Westworld">
                         <div class="card-body">
                             <h3 class="card-title">Westworld</h3>
                             <p class="card-text">New Release Science Fiction TV Series</p>
                         </div>
                     </div>
                 </div>
+                <!-- Doom Patrol -->
                 <div class="col">
                     <div class="card h-100">
-                        <img src="https://picsum.photos/200/305" class="card-img-top" alt="...">
+                        <img src="https://m.media-amazon.com/images/M/MV5BYjY1MDExMzctMzQ4Mi00NmU1LWIyMWItZTkzZDk2YmY2NGI2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" class="card-img-top" alt="Doom Patrol">
                         <div class="card-body">
                             <h3 class="card-title">Doom Patrol</h3>
                             <p class="card-text">New Release Superhero TV Series</p>
                         </div>
                     </div>
                 </div>
+                <!-- Black Mirror -->
                 <div class="col">
                     <div class="card h-100">
-                        <img src="https://picsum.photos/200/306" class="card-img-top" alt="...">
+                        <img src="https://static0.srcdn.com/wordpress/wp-content/uploads/2023/05/black-mirror-poster.jpg" class="card-img-top" alt="Black Mirror">
                         <div class="card-body">
                             <h3 class="card-title">Black Mirror</h3>
                             <p class="card-text">New Release Science Fiction TV Series</p>
