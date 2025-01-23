@@ -57,6 +57,9 @@
             color: #ffffff;
             border-color: #0f7712;
         }
+      #small text {
+        color: #b3b3b3;
+      }
     </style>
 </head>
 <body>
@@ -77,7 +80,17 @@
         </div>
         <div class="mb-3">
             <label for="trailerUrl" class="form-label">Trailer URL</label>
-            <input type="text" id="trailerUrl" class="form-control" name="trailerUrl" th:value="${movie?.trailerUrl}" required>
+            <div class="input-group">
+                <span class="input-group-text bg-dark text-light border-secondary">https://www.youtube.com/embed/</span>
+                <input type="text"
+                       id="trailerUrl"
+                       class="form-control bg-dark text-light border-secondary"
+                       name="trailerUrl"
+                       th:value="${#strings.substringAfter(movie?.trailerUrl, 'https://www.youtube.com/embed/')}"
+                       placeholder="VIDEO_ID"
+                       required>
+            </div>
+            <p class="form-text "  id="small text" style="color: #8E0E00" >Only enter the YouTube video ID (e.g., "dQw4w9WgXcQ")</p>
         </div>
         <div class="mb-3">
             <label for="movieFile" class="form-label">Movie File</label>
@@ -90,4 +103,14 @@
     </div>
 </div>
 </body>
+<script>
+    document.querySelector('form').addEventListener('submit', function(e) {
+        const baseUrl = 'https://www.youtube.com/embed/';
+        const idInput = document.getElementById('trailerUrl');
+
+        if (!idInput.value.startsWith(baseUrl)) {
+            idInput.value = baseUrl + idInput.value;
+        }
+    });
+</script>
 </html>
