@@ -50,52 +50,7 @@ public class MovieController {
         return "redirect:/login";
     }
 
-    @GetMapping("/add")
-    public String showAddMovieForm(Model model) {
-        model.addAttribute("movie", new Movie()); // Bind an empty movie object to the form
-        return "add-movie"; // Render add-movie.html
-    }
 
-    @PostMapping("/add")
-    public String addMovie(@ModelAttribute Movie movie,
-                           @RequestParam("movieFile") MultipartFile movieFile,
-                           Model model) {
-        try {
-            // Validate file input
-            if (movieFile.isEmpty()) {
-                model.addAttribute("errorMessage", "Movie file is required.");
-                return "add-movie";
-            }
-
-            // Define the upload directory
-            String uploadDir = "src/main/resources/static/uploads/"
-                    + movie.getTitle().replaceAll("[^a-zA-Z0-9]", "_") + "/";
-            Path uploadPath = Paths.get(uploadDir);
-
-            // Create directory if it doesn't exist
-            if (!Files.exists(uploadPath)) {
-                Files.createDirectories(uploadPath);
-            }
-
-            // Save the file
-            String fileName = movieFile.getOriginalFilename();
-            Path filePath = uploadPath.resolve(fileName);
-            Files.write(filePath, movieFile.getBytes());
-
-            // Set relative path for web access
-            movie.setMovieFilePath("/uploads/"
-                    + movie.getTitle().replaceAll("[^a-zA-Z0-9]", "_") + "/" + fileName);
-
-            // Save the movie to the database
-            movieRepository.save(movie);
-            return "redirect:/movies";
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            model.addAttribute("errorMessage", "Error occurred while uploading the file.");
-            return "add-movie";
-        }
-    }
 
 
     @GetMapping("/{id}")
