@@ -5,279 +5,118 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
     <style>
         body {
-            background-color: #141414;
-            color: #ffffff;
-            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg,
+            #000000 0%,    /* Pure black */
+            #2a0000 50%,   /* Dark red */
+            #000000 100%   /* Pure black */
+            );
+            background-attachment: fixed;
+            min-height: 100vh;
             margin: 0;
             padding: 0;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
         }
 
+        /* Keep all your existing styles below */
         .container {
             max-width: 1000px;
             margin: 50px auto;
         }
 
-        h1 {
-            color: #e50914;
-            font-size: 36px;
-            margin-bottom: 30px;
-        }
-
-        .row {
-            margin-bottom: 50px;
-        }
-
         .card {
-            background-color: #242424;
-            border: none;
-            border-radius: 4px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-            transition: 0.3s ease-in-out;
+            background-color: #000000;
+            /* ... rest of your card styles */
         }
 
-        .card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        }
-
-        .card-img-top {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-        }
-
-        .card-body {
-            padding: 20px;
-        }
-
-        .card-title {
-            color: #ffffff;
-            font-size: 20px;
-            margin-bottom: 10px;
-        }
-
-        .card-text {
-            color: #cccccc;
-        }
-
-        .card-footer {
-            background-color: #121212;
-            padding: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .btn-primary, .btn-secondary {
-            color: #ffffff;
-            border: none;
-            border-radius: 4px;
-            padding: 8px 20px;
-            cursor: pointer;
-            transition: 0.3s ease-in-out;
-        }
-
-        .btn-primary {
-            background-color: #e50914;
-        }
-
-        .btn-primary:hover {
-            background-color: #b20710;
-        }
-
-        .btn-secondary {
-            background-color: #333333;
-        }
-
-        .btn-secondary:hover {
-            background-color: #292929;
-        }
-        /* General Background */
-        .bg-netflix {
-            background-color: #141414;
-        }
-
-        /* Logo Styling */
-        .logo {
-            width: 70px;
-            vertical-align: middle;
-        }
-
-        /* Navbar Styling */
-        .navbar-dark .navbar-brand {
-            color: #ffffff;
-        }
-
-        .navbar-dark .navbar-nav .nav-link {
-            color: #ffffff;
-        }
-
-        .navbar-dark .navbar-nav .nav-link:hover {
-            color: #55CFFF;
-        }
-
-        /* Dropdown Menu */
-        .dropdown-menu {
-            background-color: #141414 !important;
-            border: none !important;
-            box-shadow: none !important;
-        }
-
-        .dropdown-menu a {
-            color: #ffffff !important;
-        }
-
-        .dropdown-menu a:hover {
-            color: #55CFFF !important;
-            background-color: transparent !important;
-        }
-
-        /* Profile Icon */
-        .icon {
-            display: block;
-            width: 25px;
-            vertical-align: middle;
-            margin: 0;
-        }
-
-        /* Remove Default List Styles */
-        .nav-item {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        /* Navbar Toggler Icon */
-        .navbar-dark .navbar-toggler-icon {
-            background-image: none;
-        }
-
-        /* Mobile View Adjustments */
-        @media (max-width: 767px) {
-            .navbar {
-                padding: 0.5rem 1rem;
-            }
-
-            .navbar-nav {
-                margin-top: 1rem;
-            }
-
-            .navbar-nav .nav-link {
-                padding: 0.5rem 0.5rem;
-            }
-
-            .dropdown-menu {
-                width: 100%;
-            }
-        }
-
-        /* Search Form */
-        .form-inline {
-            margin-left: 100px;
-            margin-right: 100px;
-        }
-
-        .form-control {
-            background-color: #141414;
-            border: 1px solid #333;
-            color: #fff;
-        }
-
-        .form-control:focus {
-            border-color: #55CFFF;
-            box-shadow: 0 0 0 0.2rem rgba(85, 207, 255, 0.25);
-        }
-
-        .btn-outline-light {
-            border-color: #55CFFF;
-            color: #55CFFF;
-        }
-
-        .btn-outline-light:hover {
-            background-color: #55CFFF;
-            color: #141414;
-        }
-
-        /* Sign Up/Log In Button */
-        #sign-up {
-            margin-right: 50px;
-        }
-
+        /* ... rest of your existing styles */
     </style>
 </head>
 <body>
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-netflix fixed-top">
-    <div class="container">
-        <!-- Brand/Logo -->
-        <a class="navbar-brand" href="/">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/1024px-Netflix_2015_logo.svg.png"
-                 alt="Netflix Logo" class="logo">
-        </a>
-
-        <!-- Toggler for Mobile View -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <!-- Navbar Links and Content -->
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <!-- Home Link -->
-                <li class="nav-item active">
-                    <a class="nav-link" href="/">Home</a>
-                </li>
-                <!-- Movies Link -->
-                <li class="nav-item active">
-                    <a class="nav-link" href="/tv-shows">Tv Shows</a>
-                </li>
-            </ul>
-
-            <!-- Search Bar -->
-            <form class="form-inline my-2 my-lg-0" th:action="@{/search}" method="get">
-                <input class="form-control mr-sm-2" type="search" name="query" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
-            </form>
-
-            <!-- Log In Button -->
-            <a th:href="@{/login}" id="sign-up" class="btn btn-danger btn-sm" role="button">log in</a>
-
-            <!-- Profile Dropdown -->
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
-                         alt="User Icon" class="icon">
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/logout">Log Out</a>
-                </div>
-            </li>
-        </div>
-    </div>
-</nav>
+<!-- Navbar (keep existing navbar code) -->
 
 <div class="container">
     <h1 class="mb-4">Movies</h1>
 
-    <!-- Check if movies list is not empty -->
     <div class="row row-cols-1 row-cols-md-3 g-4">
         <div class="col" th:each="movie : ${movies}">
-            <a th:href="@{/movies/{id}(id=${movie.id})}" class="text-decoration-none">
-                <div class="card h-100">
-                    <!-- Use a default image if imgSrc is null -->
-                    <img th:src="${movie.imgSrc != null ? movie.imgSrc : '/images/default-movie.jpg'}" class="card-img-top" alt="Movie Image">
+            <div class="card h-100">
+                <a th:href="@{/movies/{id}(id=${movie.id})}" class="card-link">
+                    <img th:src="${movie.imgSrc != null ? movie.imgSrc : '/images/default-movie.jpg'}"
+                         class="card-img-top"
+                         alt="Movie Image">
                     <div class="card-body">
-                        <!-- Ensure title and description render properly -->
                         <h5 class="card-title" th:text="${movie.title != null ? movie.title : 'Untitled Movie'}"></h5>
                         <p class="card-text" th:text="${movie.description != null ? movie.description : 'No description available.'}"></p>
                     </div>
+                </a>
+                <div class="card-footer">
+                    <button type="button"
+                            class="btn btn-danger trailer-btn"
+                            data-bs-toggle="modal"
+                            data-bs-target="#trailerModal"
+                            th:data-trailer-url="${movie.trailerUrl}"
+                            onclick="event.stopPropagation()">
+                        Watch Trailer
+                    </button>
                 </div>
-            </a>
+            </div>
         </div>
     </div>
 </div>
 
+<!-- Trailer Modal -->
+<div class="modal fade" id="trailerModal" tabindex="-1" aria-labelledby="trailerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content bg-dark text-white">
+            <div class="modal-header border-secondary">
+                <h5 class="modal-title" id="trailerModalLabel">Movie Trailer</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-0">
+                <div class="ratio ratio-16x9">
+                    <iframe id="trailerIframe" class="embed-responsive-item" allowfullscreen
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Trailer Modal Handling
+        const trailerModal = document.getElementById('trailerModal');
+        const trailerIframe = document.getElementById('trailerIframe');
+
+        trailerModal.addEventListener('show.bs.modal', (event) => {
+            const button = event.relatedTarget;
+            const trailerUrl = button.getAttribute('data-trailer-url');
+
+            if(trailerUrl) {
+                trailerIframe.src = `${trailerUrl}?autoplay=1&mute=1`;
+            } else {
+                trailerIframe.src = '';
+                console.error('No trailer URL provided');
+            }
+        });
+
+        trailerModal.addEventListener('hidden.bs.modal', () => {
+            trailerIframe.src = '';
+        });
+
+        // Card Click Handling
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('click', (e) => {
+                if (!e.target.closest('.trailer-btn')) {
+                    const link = card.querySelector('a.card-link');
+                    if (link) window.location.href = link.href;
+                }
+            });
+        });
+    });
+</script>
 </body>
 </html>
