@@ -1,5 +1,6 @@
 package com.example.netflix.controllers;
 
+import com.example.netflix.MovieCategory;
 import com.example.netflix.models.Movie;
 import com.example.netflix.repositories.MovieRepository;
 import com.example.netflix.services.AdminService;
@@ -106,6 +107,7 @@ public class AdminController {
             return "redirect:/admin/login";
         }
         model.addAttribute("movie", new Movie());
+        model.addAttribute("categories", MovieCategory.values()); // Kaloni kategoritë në model
         return "admin/add-movie";
     }
 
@@ -160,7 +162,6 @@ public class AdminController {
             return "admin/add-movie";
         }
     }
-
 
 }
 

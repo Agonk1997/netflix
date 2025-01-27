@@ -1,21 +1,18 @@
 package com.example.netflix.controllers;
 
+import com.example.netflix.MovieCategory;
 import com.example.netflix.models.Movie;
-import com.example.netflix.repositories.MovieRepository;
+
 import com.example.netflix.services.MovieService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -25,9 +22,7 @@ public class MovieController {
     @Autowired
     private MovieService movieService;
 
-    @Autowired
-    private MovieRepository movieRepository;
-
+    // Shfaq të gjitha filmat
     @GetMapping("")
     public String getAllMovies(Model model, HttpServletRequest request) {
         Cookie[] cookies = request.getCookies();
@@ -36,23 +31,43 @@ public class MovieController {
                 if ("userId".equals(cookie.getName())) {
                     String userId = cookie.getValue();
 
-                    // Fetch movies (logic can be adjusted based on user ID if needed)
+                    // Merr të gjitha filmat
                     List<Movie> movies = movieService.getAllMovies();
-                    System.out.println("Number of movies found: " + movies.size());
-
-                    model.addAttribute("movies", movies != null ? movies : new ArrayList<>());
-                    return "movies"; // Render movies.html
+                    model.addAttribute("movies", movies);
+                    model.addAttribute("categories", MovieCategory.values()); // Shto kategoritë në model
+                    return "movies"; // Kthen pamjen movies.html
                 }
             }
         }
 
-        // If no valid cookie is found, redirect to login page
+        // Nëse nuk ka cookie të vlefshme, ridrejto në faqen e login
         return "redirect:/login";
     }
 
+    // Shfaq filmat sipas kategorisë
+    @GetMapping("/category/{category}")
+    public String getMoviesByCategory(@PathVariable("category") MovieCategory category, Model model, HttpServletRequest request) {
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if ("userId".equals(cookie.getName())) {
+                    String userId = cookie.getValue();
 
+                    // Merr filmat sipas kategorisë
+                    List<Movie> movies = movieService.getMoviesByCategory(category);
+                    model.addAttribute("movies", movies);
+                    model.addAttribute("category", category);
+                    model.addAttribute("categories", MovieCategory.values()); // Shto kategoritë në model
+                    return "movies"; // Kthen pamjen movies.html
+                }
+            }
+        }
 
+        // Nëse nuk ka cookie të vlefshme, ridrejto në faqen e login
+        return "redirect:/login";
+    }
 
+    // Shfaq detajet e një filmi sipas ID
     @GetMapping("/{id}")
     public String getMovieById(@PathVariable("id") long id, Model model, HttpServletRequest request) {
         Cookie[] cookies = request.getCookies();
@@ -61,18 +76,18 @@ public class MovieController {
                 if ("userId".equals(cookie.getName())) {
                     String userId = cookie.getValue();
 
-                    // Fetch the movie by ID
-                    Movie movie = movieRepository.findById(id).orElse(null);
+                    // Merr filmin sipas ID
+                    Movie movie = movieService.getMovieById(id);
                     if (movie == null) {
-                        return "redirect:/movies"; // Redirect to movies list if the movie is not found
+                        return "redirect:/movies"; // Ridrejto nëse filmi nuk gjendet
                     }
                     model.addAttribute("movie", movie);
-                    return "movie-details"; // Render movie-details.html
+                    return "movie-details"; // Kthen pamjen movie-details.html
                 }
             }
         }
-        // If no valid cookie is found, redirect to login page
+
+        // Nëse nuk ka cookie të vlefshme, ridrejto në faqen e login
         return "redirect:/login";
     }
-
 }

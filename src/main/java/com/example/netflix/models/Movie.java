@@ -1,5 +1,6 @@
 package com.example.netflix.models;
 
+import com.example.netflix.MovieCategory;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -56,5 +57,8 @@ public class Movie {
     @Column(name = "movie_file_name", length = 255)
     private String movieFileName;
 
+    @Enumerated(EnumType.STRING)
+    @Column
+    private MovieCategory category;
     // No need to explicitly declare getters and setters if you're using Lombok's @Data
 }

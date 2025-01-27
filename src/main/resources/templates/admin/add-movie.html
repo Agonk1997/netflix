@@ -1,116 +1,127 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Add Movie</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
-    <style>
-        body {
-            background-color: #141414;
-            color: #ffffff;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
 
-        .container {
-            max-width: 700px;
-            margin: 50px auto;
-            text-align: center;
-        }
+        <!DOCTYPE html>
+        <html xmlns:th="http://www.thymeleaf.org">
+        <head>
+            <title>Add Movie</title>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+            <style>
+                body {
+                    background-color: #141414;
+                    color: #ffffff;
+                    font-family: Arial, sans-serif;
+                    margin: 0;
+                    padding: 0;
+                }
 
-        h1 {
-            color: #e50914;
-            font-size: 36px;
-            margin-bottom: 30px;
-        }
+                .container {
+                    max-width: 700px;
+                    margin: 50px auto;
+                    text-align: center;
+                }
 
-        .form-control {
-            background-color: #242424;
-            color: #ffffff;
-            border: 1px solid #333333;
-            border-radius: 4px;
-            padding: 10px;
-            margin-bottom: 15px;
-        }
+                h1 {
+                    color: #e50914;
+                    font-size: 36px;
+                    margin-bottom: 30px;
+                }
 
-        .form-control:focus {
-            border-color: #e50914;
-            box-shadow: none;
-        }
+                .form-control {
+                    background-color: #242424;
+                    color: #ffffff;
+                    border: 1px solid #333333;
+                    border-radius: 4px;
+                    padding: 10px;
+                    margin-bottom: 15px;
+                }
 
-        .btn-primary {
-            background-color: #e50914;
-            color: #ffffff;
-            border: none;
-            border-radius: 4px;
-            padding: 10px 20px;
-            cursor: pointer;
-            transition: 0.3s ease-in-out;
-        }
+                .form-control:focus {
+                    border-color: #e50914;
+                    box-shadow: none;
+                }
 
-        .btn-primary:hover {
-            background-color: #b20710;
-        }
+                .btn-primary {
+                    background-color: #e50914;
+                    color: #ffffff;
+                    border: none;
+                    border-radius: 4px;
+                    padding: 10px 20px;
+                    cursor: pointer;
+                    transition: 0.3s ease-in-out;
+                }
 
-        .alert-success {
-            background-color: #128c17;
-            color: #ffffff;
-            border-color: #0f7712;
-        }
-      #small text {
-        color: #b3b3b3;
-      }
-    </style>
-</head>
-<body>
-<div class="container">
-    <h1>Add a New Movie</h1>
-    <form th:action="@{/admin/add}" method="post" enctype="multipart/form-data">
-        <div class="mb-3">
-            <label for="title" class="form-label">Title</label>
-            <input type="text" id="title" class="form-control" name="title" th:value="${movie?.title}" required>
-        </div>
-        <div class="mb-3">
-            <label for="description" class="form-label">Description</label>
-            <textarea id="description" class="form-control" name="description" rows="3" th:text="${movie?.description}" required></textarea>
-        </div>
-        <div class="mb-3">
-            <label for="imgSrc" class="form-label">Image URL</label>
-            <input type="text" id="imgSrc" class="form-control" name="imgSrc" th:value="${movie?.imgSrc}" required>
-        </div>
-        <div class="mb-3">
-            <label for="trailerUrl" class="form-label">Trailer URL</label>
-            <div class="input-group">
-                <span class="input-group-text bg-dark text-light border-secondary">https://www.youtube.com/embed/</span>
-                <input type="text"
-                       id="trailerUrl"
-                       class="form-control bg-dark text-light border-secondary"
-                       name="trailerUrl"
-                       th:value="${#strings.substringAfter(movie?.trailerUrl, 'https://www.youtube.com/embed/')}"
-                       placeholder="VIDEO_ID"
-                       required>
+                .btn-primary:hover {
+                    background-color: #b20710;
+                }
+
+                .alert-success {
+                    background-color: #128c17;
+                    color: #ffffff;
+                    border-color: #0f7712;
+                }
+                #small text {
+                    color: #b3b3b3;
+                }
+            </style>
+        </head>
+        <body>
+        <div class="container">
+            <h1>Add a New Movie</h1>
+            <form th:action="@{/admin/add}" method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" id="title" class="form-control" name="title" th:value="${movie?.title}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea id="description" class="form-control" name="description" rows="3" th:text="${movie?.description}" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="imgSrc" class="form-label">Image URL</label>
+                    <input type="text" id="imgSrc" class="form-control" name="imgSrc" th:value="${movie?.imgSrc}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="trailerUrl" class="form-label">Trailer URL</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-dark text-light border-secondary">https://www.youtube.com/embed/</span>
+                        <input type="text"
+                               id="trailerUrl"
+                               class="form-control bg-dark text-light border-secondary"
+                               name="trailerUrl"
+                               th:value="${#strings.substringAfter(movie?.trailerUrl, 'https://www.youtube.com/embed/')}"
+                               placeholder="VIDEO_ID"
+                               required>
+                    </div>
+                    <p class="form-text" style="color: #8E0E00">Only enter the YouTube video ID (e.g., "dQw4w9WgXcQ")</p>
+                </div>
+                <div class="mb-3">
+                    <label for="category" class="form-label">Category</label>
+                    <select id="category" class="form-control" name="category" required>
+                        <option value="">Select a category</option>
+                        <option th:each="category : ${categories}"
+                                th:value="${category}"
+                                th:text="${category}">
+                        </option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="movieFile" class="form-label">Movie File</label>
+                    <input type="file" id="movieFile" class="form-control" name="movieFile" accept="video/*" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Movie</button>
+            </form>
+            <div th:if="${successMessage}" class="alert alert-success mt-3">
+                <p th:text="${successMessage}"></p>
             </div>
-            <p class="form-text "  id="small text" style="color: #8E0E00" >Only enter the YouTube video ID (e.g., "dQw4w9WgXcQ")</p>
         </div>
-        <div class="mb-3">
-            <label for="movieFile" class="form-label">Movie File</label>
-            <input type="file" id="movieFile" class="form-control" name="movieFile" accept="video/*" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Add Movie</button>
-    </form>
-    <div th:if="${successMessage}" class="alert alert-success mt-3">
-        <p th:text="${successMessage}"></p>
-    </div>
-</div>
-</body>
-<script>
-    document.querySelector('form').addEventListener('submit', function(e) {
-        const baseUrl = 'https://www.youtube.com/embed/';
-        const idInput = document.getElementById('trailerUrl');
+        </body>
+        <script>
+            document.querySelector('form').addEventListener('submit', function(e) {
+                const baseUrl = 'https://www.youtube.com/embed/';
+                const idInput = document.getElementById('trailerUrl');
 
-        if (!idInput.value.startsWith(baseUrl)) {
-            idInput.value = baseUrl + idInput.value;
-        }
-    });
-</script>
-</html>
+                if (!idInput.value.startsWith(baseUrl)) {
+                    idInput.value = baseUrl + idInput.value;
+                }
+            });
+        </script>
+        </html>
