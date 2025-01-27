@@ -84,6 +84,11 @@
 <div class="container">
     <h2 class="text-center">Search Results</h2>
 
+    <div th:if="${movies != null and !movies.isEmpty()}" class="alert alert-success text-center">
+        The movie you searched for exists! You can visit the <a href="/movies" class="text-danger font-weight-bold">Movies page</a> for more.
+    </div>
+
+
     <!-- Display the list of movies -->
     <div th:if="${movies != null and !movies.isEmpty()}">
         <div class="movie-grid">
@@ -93,14 +98,14 @@
                     <div class="card-body">
                         <h3 class="card-title" th:text="${movie.title}"></h3> <!-- Movie Title -->
                         <p class="card-text" th:text="${movie.description}"></p> <!-- Movie Description -->
-                        <a th:href="${movie.trailerUrl}" target="_blank" class="btn">
-                            Watch Trailer
-                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
+
 
     <!-- Display a message if no movies are found -->
     <div th:if="${movies.isEmpty()}">

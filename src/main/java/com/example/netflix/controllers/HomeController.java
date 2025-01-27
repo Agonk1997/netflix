@@ -35,6 +35,11 @@ public class HomeController {
         return "index";
     }
 
+    @GetMapping("/comments")
+    public String comments() {
+        return "userComments";
+    }
+
     @GetMapping("/tv-shows")
     public String tvShows() {
         return "tv-shows";

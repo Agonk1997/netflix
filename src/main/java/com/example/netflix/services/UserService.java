@@ -38,4 +38,8 @@ public class UserService {
     public boolean emailExists(@Email(message = "Invalid email format") @Pattern(regexp = "^(.+)@(.+)$", message = "Email format is invalid") String email) {
         return userRepository.findByEmail(email).isPresent();
     }
+
+    public User getUserById(long l) {
+        return userRepository.findById(l).orElse(null);
+    }
 }
