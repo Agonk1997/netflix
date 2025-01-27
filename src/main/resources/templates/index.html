@@ -1,140 +1,184 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Netflix - Home</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #131313;
+            color: #fff;
+        }
+
+        .hero {
+            background-image: linear-gradient(to right, #8E0E00, #1F1C18), url("/static/assets/129554147-6ac7ba51-43e7-4c8e-ba77-e646a3ef6b12.jpg");
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .hero .banner {
+            position: relative;
+            width: 100%;
+            height: 500px;
+        }
+
+        .hero .banner img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .hero .banner .slider {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 60px;
+            font-weight: bold;
+        }
+
+        .hero .banner .slider span {
+            position: relative;
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .hero .banner .btn {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 10px;
+        }
+
+        .hero .banner .loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .featured-content {
+            background: #870000;
+            background: linear-gradient(to right, #870000, #190A05);
+            background-size: cover;
+            background-position: center;
+            padding: 50px 0;
+        }
+
+        .featured-content h2 {
+            font-size: 36px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .new-releases {
+            background: #870000;
+            background: linear-gradient(to right, #870000, #190A05);
+            background-size: cover;
+            background-position: center;
+            padding: 50px 0;
+        }
+
+        .new-releases h2 {
+            font-size: 36px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        /* Karta */
+        .card {
+            background-color: #1A1D23;
+            border: none;
+            border-radius: 10px; /* Këndet e rrumbullakosura për një pamje më të butë */
+            overflow: hidden; /* Siguron që imazhet të mos dalin jashtë kartës */
+            height: 100%;
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover; /* Siguron që imazhi të mbushë hapësirën pa deformim */
+        }
+
+        .card .card-body {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Siguron që titulli dhe përshkrimi janë të shpërndarë mirë */
+            flex-grow: 1; /* Për të mbushur hapësirën vertikalisht */
+        }
+
+        .card .card-body h3 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .card .card-body p {
+            font-size: 14px;
+            font-weight: normal;
+            color: #bbb;
+        }
+
+        .card-footer {
+            padding: 10px 15px;
+            background-color: #1A1D23;
+            border-top: 1px solid #333;
+            display: flex;
+            justify-content: center;
+        }
+
+        .card-footer .trailer-btn {
+            font-size: 14px;
+            font-weight: bold;
+            padding: 10px 20px;
+            background-color: #e50914;
+            border-radius: 5px;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .card-footer .trailer-btn:hover {
+            background-color: #f40612;
+        }
+
+        /* Siguro që kartat të shfaqen me të njëjtën madhësi */
+        .row-cols-1, .row-cols-md-4 {
+            gap: 20px;
+        }
+
+        /* Hapsira për kartat */
+        .row .col {
+            display: flex;
+            justify-content: center;
+        }
+
+        .card.h-100 {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+    </style>
+</head>
+<body>
+
 <th:block th:insert="~{shared/_header.html}"></th:block>
-
-
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #131313;
-    color: #fff;
-}
-
-.hero {
-    background-image: linear-gradient(
-            to right,
-            #8E0E00,#1F1C18),url("/static/assets/129554147-6ac7ba51-43e7-4c8e-ba77-e646a3ef6b12.jpg");
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-.hero .banner {
-    position: relative;
-    width: 100%;
-    height: 500px;
-}
-
-.hero .banner img {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: opacity 0.5s ease-in-out;
-}
-
-.hero .banner .slider {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 60px;
-    font-weight: bold;
-
-}
-
-.hero .banner .slider span {
-    position: relative;
-    font-size: 24px;
-    font-weight: bold;
-    margin-top: 20px;
-}
-
-.hero .banner .btn {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 24px;
-    font-weight: bold;
-    border-radius: 10px;
-}
-
-.hero .banner .loader {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 24px;
-    font-weight: bold;
-
-}
-
-.featured-content {
-    background: #870000;
-    background: linear-gradient(
-            to right,
-            #870000,#190A05
-    );
-    background-size: cover;
-    background-position: center;
-    padding: 50px 0;
-}
-
-.featured-content h2 {
-
-    font-size: 36px;
-    font-weight: bold;
-    color: #fff;
-
-}
-
-.new-releases {
-    background: #870000;
-    background: linear-gradient(
-            to right,
-            #870000,#190A05
-    );
-    background-size: cover;
-    background-position: center;
-    padding: 50px 0;
-}
-
-.new-releases h2 {
-    font-size: 36px;
-    font-weight: bold;
-    color: #fff;
-
-}
-
-.card {
-    background-color: #1A1D23;
-    border: none;
-}
-
-.card img {
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-}
-
-.card .card-body {
-    padding: 0 20px;
-}
-
-.card .card-body h3 {
-    font-size: 24px;
-    font-weight: bold;
-
-}
-
-.card .card-body p {
-    font-size: 18px;
-    font-weight: bold;
-    }
-
-</style>
 
 <main>
     <!-- Hero Section -->
@@ -144,14 +188,15 @@
                 <div class="col-md-12">
                     <div class="banner">
                         <img src="/assets/05cItXL96l4LE9n02WfDR0h-5.webp" alt="Netflix Banner" class="img-fluid">
-                            <h1 class="display-4 fw-bold">Welcome to Netflix</h1>
-                            <span>Watch your favorite movies and TV shows online</span>
-                            <a th:href="@{/sign-up}" id="sign-up" class="btn btn-danger  btn-lg" role="button">Sign Up Now</a>                        </div>
+                        <h1 class="display-4 fw-bold">Welcome to Netflix</h1>
+                        <span>Watch your favorite movies and TV shows online</span>
+                        <a th:href="@{/sign-up}" id="sign-up" class="btn btn-danger btn-lg" role="button">Sign Up Now</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
     <!-- Featured Content Section -->
     <section class="featured-content py-5">
         <div class="container">
@@ -159,56 +204,57 @@
             <div class="row row-cols-1 row-cols-md-4 g-4">
                 <div class="col">
                     <div class="card h-100">
-                        <img src="https://picsum.photos/300/200" class="card-img-top" alt="...">
+                        <img src="https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_FMjpg_UX1000_.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h3 class="card-title">The Dark Knight</h3>
                             <p class="card-text">Action Thriller Movie</p>
-                            <a href="https://www.youtube.com/watch?v=EXeTwQWrcwY" target="_blank" class="card-link">
-                                <p>Watch Trailer</p>
-                            </a>
+                        </div>
+                        <div class="card-footer">
+                            <button type="button" class="btn btn-danger trailer-btn" data-trailer-url="https://www.youtube.com/embed/EXeTwQWrcwY" onclick="event.stopPropagation()">Watch Trailer</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_FMjpg_UX1000_.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h3 class="card-title">Inception</h3>
+                            <p class="card-text">Action, Drama, Thriller </p>
+                        </div>
+                        <div class="card-footer">
+                            <button type="button" class="btn btn-danger trailer-btn" data-trailer-url="https://www.youtube.com/embed/8hP9D6kZseM" onclick="event.stopPropagation()">Watch Trailer</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="https://m.media-amazon.com/images/M/MV5BMTY2YThkNmQtOWJhYy00ZDc3LWEzOGEtMmQwNzM0YjFmZWIyXkEyXkFqcGc@._V1_.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h3 class="card-title">The Irishman</h3>
+                            <p class="card-text">Drama Thriller Movie</p>
+                        </div>
+                        <div class="card-footer">
+                            <button type="button" class="btn btn-danger trailer-btn" data-trailer-url="https://www.youtube.com/embed/WHXxVmeGQUc" onclick="event.stopPropagation()">Watch Trailer</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="https://m.media-amazon.com/images/M/MV5BNmE0OWJlM2MtNzhmMi00YmQyLTlmY2EtZmUzNzBiNGRlN2JkXkEyXkFqcGc@._V1_.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h3 class="card-title">Marriage Story</h3>
+                            <p class="card-text">Thriller Movie</p>
+                        </div>
+                        <div class="card-footer">
+                            <button type="button" class="btn btn-danger trailer-btn" data-trailer-url="https://www.youtube.com/embed/BHi-a1n8t7M" onclick="event.stopPropagation()">Watch Trailer</button>
                         </div>
                     </div>
                 </div>
 
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="https://picsum.photos/300/201" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h3 class="card-title">12 Years a Slave</h3>
-                            <p class="card-text">Drama Movie</p>
-                            <a href="https://www.youtube.com/watch?v=Kj8QZGbB0XI" target="_blank" class="card-link">
-                                <p>Watch Trailer</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="https://picsum.photos/300/202" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h3 class="card-title">Interstellar</h3>
-                            <p class="card-text">Science Fiction Movie</p>
-                            <a href="https://www.youtube.com/watch?v=zSWdZVtXT7E" target="_blank" class="card-link">
-                                <p>Watch Trailer</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="https://picsum.photos/300/203" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h3 class="card-title">The Proposal</h3>
-                            <p class="card-text">Romance Comedy Movie</p>
-                            <a href="https://www.youtube.com/watch?v=FJjckpFgsdQ" target="_blank" class="card-link">
-                                <p>Watch Trailer</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                <!-- Add more movies as necessary -->
+
             </div>
         </div>
-
     </section>
 
     <!-- New Releases Section -->
@@ -218,84 +264,108 @@
             <div class="row row-cols-1 row-cols-md-4 g-4">
                 <div class="col">
                     <div class="card h-100">
-                        <img src="https://picsum.photos/200/300" class="card-img-top" alt="...">
+                        <img src="https://m.media-amazon.com/images/M/MV5BYWQ4MWY4NTktM2MwNy00YWI3LTg5NzktOTU0YjczZjg3MWVmXkEyXkFqcGc@._V1_.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h3 class="card-title">The Night House</h3>
                             <p class="card-text">New Release Thriller Movie</p>
-                            <a href="https://www.youtube.com/watch?v=_L-w3TKFlr4" target="_blank" class="card-link">
-                                <p>Watch Trailer</p>
-                            </a>
+                        </div>
+                        <div class="card-footer">
+                            <button type="button" class="btn btn-danger trailer-btn" data-trailer-url="https://www.youtube.com/embed/2Tshycci2ZA" onclick="event.stopPropagation()">Watch Trailer</button>
                         </div>
                     </div>
+                </div>   <div class="col">
+                <div class="card h-100">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/8/8c/The_Social_Network_film_poster.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h3 class="card-title">The Social Network</h3>
+                        <p class="card-text">New Release Thriller Movie</p>
+                    </div>
+                    <div class="card-footer">
+                        <button type="button" class="btn btn-danger trailer-btn" data-trailer-url="https://www.youtube.com/embed/lB95KLmpLR4" onclick="event.stopPropagation()">Watch Trailer</button>
+                    </div>
                 </div>
+            </div>   <div class="col">
+                <div class="card h-100">
+                    <img src="https://m.media-amazon.com/images/M/MV5BMjAzMTI1MjMyN15BMl5BanBnXkFtZTgwNzU5MTE2NjM@._V1_QL75_UX190_CR0,0,190,281_.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h3 class="card-title">Bird Box</h3>
+                        <p class="card-text">New Release Thriller Movie</p>
+                    </div>
+                    <div class="card-footer">
+                        <button type="button" class="btn btn-danger trailer-btn" data-trailer-url="https://www.youtube.com/embed/o2AsIXSh2xo" onclick="event.stopPropagation()">Watch Trailer</button>
+                    </div>
+                </div>
+            </div>
                 <div class="col">
                     <div class="card h-100">
-                        <img src="https://picsum.photos/200/304" class="card-img-top" alt="...">
+                        <img src="https://m.media-amazon.com/images/M/MV5BNjcwN2Y0MGEtMjkyYy00YTYxLWFjMWItZTEyZjA1MTJhMjE2XkEyXkFqcGc@._V1_.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h3 class="card-title">The Father</h3>
-                            <p class="card-text">New Release Drama Movie</p>
-                            <a href="https://www.youtube.com/watch?v=6yMv5hT5ExI" target="_blank" class="card-link">
-                                <p>Watch Trailer</p>
-                            </a>
+                            <h3 class="card-title">The Old Guard </h3>
+                            <p class="card-text">New Release Thriller Movie</p>
+                        </div>
+                        <div class="card-footer">
+                            <button type="button" class="btn btn-danger trailer-btn" data-trailer-url="https://www.youtube.com/embed/aK-X2d0lJ_s" onclick="event.stopPropagation()">Watch Trailer</button>
                         </div>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="https://picsum.photos/200/305" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h3 class="card-title">Arrival</h3>
-                            <p class="card-text">New Release Science Fiction Movie</p>
-                            <a href="https://www.youtube.com/watch?v=AMtPxxmOH0A" target="_blank" class="card-link">
-                                <p>Watch Trailer</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="https://picsum.photos/200/306" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h3 class="card-title">To All the Boys I've Loved Before</h3>
-                            <p class="card-text">New Release Romance Comedy Movie</p>
-                            <a href="https://www.youtube.com/watch?v=GUf0d3KqO_M" target="_blank" class="card-link">
-                                <p>Watch Trailer</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+
+
+                <!-- Add more new releases here -->
+
             </div>
         </div>
     </section>
 </main>
 
+<!-- Trailer Modal -->
+<div class="modal fade" id="trailerModal" tabindex="-1" aria-labelledby="trailerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content bg-dark text-white">
+            <div class="modal-header border-secondary">
+                <h5 class="modal-title" id="trailerModalLabel">Movie Trailer</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-0">
+                <div class="ratio ratio-16x9">
+                    <iframe id="trailerIframe" class="embed-responsive-item" allowfullscreen
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-    const loader = document.querySelector('.loader');
-    const img1 = document.querySelector('.img1');
-    const img2 = document.querySelector('.img2');
-    const img3 = document.querySelector('.img3');
-    let currentImg = 1;
+    document.addEventListener('DOMContentLoaded', () => {
+        const trailerModal = document.getElementById('trailerModal');
+        const trailerIframe = document.getElementById('trailerIframe');
 
-    function load() {
-        loader.style.display = 'none';
-        setInterval(() => {
-            if (currentImg === 1) {
-                img1.classList.remove('active');
-                img2.classList.add('active');
-                currentImg = 2;
-            } else if (currentImg === 2) {
-                img2.classList.remove('active');
-                img3.classList.add('active');
-                currentImg = 3;
-            } else {
-                img3.classList.remove('active');
-                img1.classList.add('active');
-                currentImg = 1;
-            }
-        }, 5000);
-    }
+        // Handle trailer button click to show modal
+        document.querySelectorAll('.card-footer .trailer-btn').forEach(button => {
+            button.addEventListener('click', (event) => {
+                const trailerUrl = event.target.getAttribute('data-trailer-url');
+                if (trailerUrl) {
+                    trailerIframe.src = `${trailerUrl}?autoplay=1&mute=1`;
+                    const modal = new bootstrap.Modal(trailerModal);
+                    modal.show();
+                } else {
+                    trailerIframe.src = '';
+                    console.error('No trailer URL provided');
+                }
+                event.stopPropagation();
+            });
+        });
 
-    window.addEventListener('load', load);
+        // Reset iframe src when modal is hidden
+        trailerModal.addEventListener('hidden.bs.modal', () => {
+            trailerIframe.src = '';
+        });
+    });
 </script>
 
 <th:block th:insert="~{shared/_footer.html}"></th:block>
+
+</body>
+</html>
