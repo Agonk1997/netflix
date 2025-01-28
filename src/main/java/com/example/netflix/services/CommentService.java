@@ -17,8 +17,9 @@ public class CommentService {
         this.commentRepository = commentRepository;
     }
 
+    // Përdor metodën e re për të marrë komentet së bashku me të dhënat e përdoruesit
     public List<Comment> getAllComments() {
-        return commentRepository.findAll();
+        return commentRepository.findAllWithUser();
     }
 
     public Comment addComment(Comment comment) {

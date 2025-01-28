@@ -55,4 +55,8 @@ public class Comment {
     public void setTimestamp(LocalDateTime timestamp) {
         this.timestamp = timestamp;
     }
+
+    public String getUserName() {
+        return user != null ? user.getFullName() : "Unknown";
+    }
 }

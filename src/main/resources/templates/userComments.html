@@ -153,18 +153,22 @@
 <div id="comments">
 </div>
 <script>
-    // Function to fetch comments from the API
     async function fetchComments() {
         try {
             const response = await fetch('/api/v1/comments');
             const comments = await response.json();
 
             const commentsContainer = document.getElementById('comments');
-            commentsContainer.innerHTML = ''; // Clear any previous comments
+            commentsContainer.innerHTML = ''; // Fshi komentet e mëparshme
 
             comments.forEach(comment => {
                 const commentElement = document.createElement('div');
                 commentElement.classList.add('comment');
+
+                const userName = document.createElement('p');
+                userName.textContent = `Posted by: ${comment.userName}`; // Shfaq emrin e plotë të përdoruesit
+                userName.style.fontWeight = 'bold';
+                userName.style.color = '#e50914'; // Netflix red
 
                 const content = document.createElement('p');
                 content.textContent = comment.content;
@@ -173,6 +177,7 @@
                 timestamp.classList.add('timestamp');
                 timestamp.textContent = new Date(comment.timestamp).toLocaleString();
 
+                commentElement.appendChild(userName); // Shto emrin e përdoruesit
                 commentElement.appendChild(content);
                 commentElement.appendChild(timestamp);
 
@@ -183,7 +188,6 @@
         }
     }
 
-    // Call the fetchComments function when the page loads
     document.addEventListener('DOMContentLoaded', fetchComments);
 </script>
 </body>
